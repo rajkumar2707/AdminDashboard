@@ -1,0 +1,30 @@
+.header {
+  grid-area: header;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px 0 20px;
+  border-bottom: 2px solid #dfeae6;
+}
+.header-title {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+}
+.menu-icon {
+  display: none;
+  margin-right: 10px;
+}
+.icon {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* Medium <= 992px */
+@media (max-width: 992px) {
+  .menu-icon {
+    display: inline;
+  }
+}

@@ -1,0 +1,72 @@
+#sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  background-color: #011d22;
+  overflow-y: auto;
+  transition: all 0.5s;
+}
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 20px 20px;
+  border-bottom: 1px solid rgba(196, 245, 226, 0.5);
+}
+.icon_header {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 25px;
+  color: #c4f5e2;
+  margin-right: 10px;
+}
+.close-icon {
+  cursor: pointer;
+  font-size: 20px;
+}
+.sidebar-title > span {
+  display: none;
+}
+.sidebar-brand {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #c4f5e2;
+  font-size: 20px;
+}
+.icon {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 22px;
+  color: #b6c0c2;
+  margin-right: 10px;
+}
+.sidebar-list {
+  padding: 0;
+  list-style-type: none;
+}
+.sidebar-list-item {
+  padding: 15px 20px 15px 20px;
+}
+.sidebar-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+.sidebar-list-item > a {
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #b6c0c2;
+  font-size: 15px;
+}
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+  z-index: 12 !important;
+}
+
+/* Medium <= 992px */
+@media (max-width: 992px) {
+  #sidebar {
+    display: none;
+  }
+  .sidebar-title > span {
+    display: inline;
+  }
+}
