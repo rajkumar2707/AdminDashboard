@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidShip, BiBorderBottom } from "react-icons/bi";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { MdPayment } from "react-icons/md";
@@ -11,13 +11,30 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import mData from "./MOCK_DATA.json";
+// import mData from "./MOCK_DATA.json";
 import "./Home.css";
 
 function Home() {
   const [sorting, setSorting] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const data = useMemo(() => mData, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("https://dummyjson.com/users?limit=100");
+      const userData = await res.json();
+      if (userData.users.length > 0) {
+        setUsers(userData.users);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // const data = useMemo(() => users, []);
 
   /** @type import('@tanstack/react-table').ColumnDef<any> */
   const columns = [
@@ -27,21 +44,47 @@ function Home() {
     },
     {
       header: "Name",
-      accessorFn: (row) => `${row.first_name} ${row.last_name}`,
+      accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     },
     {
       header: "Email",
       accessorKey: "email",
     },
     {
+      header: "Phone",
+      accessorKey: "phone",
+    },
+    {
       header: "Gender",
       accessorKey: "gender",
+    },
+    {
+      header: "Actions",
+      cell: (row) => {
+        return (
+          <div>
+            <button
+              onClick={() => alert(row.row.original.firstName)}
+              className="button"
+              style={{ marginRight: "5px" }}
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => alert(row.row.original.firstName)}
+              className="button"
+            >
+              Delete
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
   const table = useReactTable({
-    data,
-    columns,
+    data: users,
+    columns: columns,
     initialState: { pagination: { pageSize: 5 } },
     state: {
       sorting: sorting,
